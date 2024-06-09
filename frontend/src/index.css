@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+
+/* base styles */
+* {
+  margin: 0;
+  font-family: "Quicksand";
+  color: #333;
+}
+
+body {
+  background-color: #f4f4f4;
+}
+
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* This ensures the .app container takes up the full viewport height */
+}
+
+.app button {
+  display: flex;
+  justify-content: center; /* Centers content horizontally inside the button */
+  align-items: center; /* Centers content vertically inside the button */
+  margin: 10px;
+  padding: 10px 20px;
+}
