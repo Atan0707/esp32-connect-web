@@ -8,3 +8,5 @@ used express and react
 
 npm install to run file
 required some arduino library to make install it on esp32
+
+to start npm run dev -- --host

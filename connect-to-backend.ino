@@ -8,6 +8,9 @@ const char *password = "uba12345";
 
 int redPin = 2;
 int greenPin = 4;
+const int buttonPin = 5;
+
+int buttonState = 0;
 
 AsyncWebServer server(80);
 char data[50]; // Use char array instead of String
@@ -16,6 +19,7 @@ void setup()
 {
     pinMode(redPin, OUTPUT);
     pinMode(greenPin, OUTPUT);
+    pinMode(buttonPin, INPUT);
     Serial.begin(9600);
     WiFi.begin(ssid, password);
 
@@ -40,35 +44,36 @@ void setup()
 
 void loop()
 {
+    buttonState = digitalRead(buttonPin);
     if (WiFi.status() == WL_CONNECTED)
     {
-        // HTTPClient httpPost;
+        HTTPClient httpPost;
 
-        // // Send POST request
-        // httpPost.begin("http://192.168.1.2:3000/postData");       // Specify the URL
-        // httpPost.addHeader("Content-Type", "application/json"); // Specify the content type
+        // Send POST request
+        httpPost.begin("http://192.168.1.2:3000/postData");       // Specify the URL
+        httpPost.addHeader("Content-Type", "application/json"); // Specify the content type
 
-        // // Create the JSON object
-        // DynamicJsonDocument doc(1024);
-        // doc["value"] = 1;
-        // String requestBody;
-        // serializeJson(doc, requestBody);
+        // Create the JSON object
+        DynamicJsonDocument doc(1024);
+        doc["value"] = buttonState;
+        String requestBody;
+        serializeJson(doc, requestBody);
 
-        // int httpCodePost = httpPost.POST(requestBody); // Send the POST request
+        int httpCodePost = httpPost.POST(requestBody); // Send the POST request
 
-        // if (httpCodePost > 0)
-        // {
-        //     String payloadPost = httpPost.getString();
-        //     Serial.println(payloadPost);
-        // }
+        if (httpCodePost > 0)
+        {
+            String payloadPost = httpPost.getString();
+            Serial.println(payloadPost);
+        }
 
-        // else
-        // {
-        //     Serial.print("POST request failed with status code ");
-        //     Serial.println(httpCodePost);
-        // }
+        else
+        {
+            Serial.print("POST request failed with status code ");
+            Serial.println(httpCodePost);
+        }
 
-        // httpPost.end();
+        httpPost.end();
 
         // Send GET request
         HTTPClient httpGet;
