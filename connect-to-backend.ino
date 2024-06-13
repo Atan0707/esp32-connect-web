@@ -110,16 +110,25 @@ void loop()
             DynamicJsonDocument doc(1024);
             deserializeJson(doc, payloadGet);
 
+            //extract "value" from the JSON response
             int value = doc["value"];
-            snprintf(data, sizeof(data), "%d", value); // Convert integer to string and copy it to data
+            snprintf(data, sizeof(data), "%d", value); // Convert integer to string and copy it to data - tak penting pon ni
             Serial.print("Parsed value: ");
             Serial.println(value);
             Serial.println(data);
+            
+            //extract "counter" from the JSON response
+            int counter = doc["counter"];
+            Serial.print("Parsed counter: ");
+            Serial.println(counter);
 
             //lcd
             lcd.setCursor(0, 0);
             lcd.print("Value: ");
-            lcd.print(data);
+            lcd.print(value);
+            lcd.setCursor(0, 1);
+            lcd.print("Counter: ");
+            lcd.print(counter);
 
             if (strcmp(data, "1") == 0) // Use strcmp for comparison
             {
