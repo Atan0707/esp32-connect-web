@@ -2,6 +2,8 @@
 #include <HTTPClient.h>
 #include <ArduinoJson.h>
 #include <ESPAsyncWebServer.h>
+#include <LiquidCrystal_I2C.h>
+LiquidCrystal_I2C lcd(0x27, 16, 2); // Set the LCD address to 0x27 for a 16 chars and 2 line display
 
 const char *ssid = "arduino-uba-2.4G";
 const char *password = "uba12345";
@@ -23,6 +25,9 @@ void setup()
     pinMode(redPin, OUTPUT);
     pinMode(greenPin, OUTPUT);
     pinMode(buttonPin, INPUT);
+    lcd.init();
+    lcd.backlight();
+    lcd.clear();
     Serial.begin(9600);
     WiFi.begin(ssid, password);
 
@@ -47,6 +52,8 @@ void setup()
 
 void loop()
 {
+    
+
     //testing counter
     unsigned long currentTime = millis();
     if (currentTime - lastIncrementTime >= 1000) { // Check if a second has passed
@@ -89,6 +96,7 @@ void loop()
 
         httpPost.end();
 
+//--------------------------------------------------------------------------------------------
         // Send GET request
         HTTPClient httpGet;
         httpGet.begin("http://192.168.1.2:3000/getData");
@@ -107,6 +115,12 @@ void loop()
             Serial.print("Parsed value: ");
             Serial.println(value);
             Serial.println(data);
+
+            //lcd
+            lcd.setCursor(0, 0);
+            lcd.print("Value: ");
+            lcd.print(data);
+
             if (strcmp(data, "1") == 0) // Use strcmp for comparison
             {
                 digitalWrite(2, HIGH);
@@ -123,6 +137,7 @@ void loop()
         {
             Serial.print("GET request failed with status code ");
             Serial.println(httpCodeGet);
+            lcd.print("GET request failed");
         }
 
         httpGet.end();
