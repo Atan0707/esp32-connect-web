@@ -10,6 +10,9 @@ int redPin = 2;
 int greenPin = 4;
 const int buttonPin = 5;
 
+unsigned long lastIncrementTime = 0; // Stores the last time the counter was incremented
+int counter = 0;
+
 int buttonState = 0;
 
 AsyncWebServer server(80);
@@ -44,7 +47,17 @@ void setup()
 
 void loop()
 {
+    //testing counter
+    unsigned long currentTime = millis();
+    if (currentTime - lastIncrementTime >= 1000) { // Check if a second has passed
+        counter++; // Increment the counter
+        Serial.print("Counter: ");
+        Serial.println(counter);
+        lastIncrementTime = currentTime; // Update the last increment time
+    }
+
     buttonState = digitalRead(buttonPin);
+
     if (WiFi.status() == WL_CONNECTED)
     {
         HTTPClient httpPost;
@@ -56,6 +69,7 @@ void loop()
         // Create the JSON object
         DynamicJsonDocument doc(1024);
         doc["value"] = buttonState;
+        doc["counter"] = counter; // Add the counter value
         String requestBody;
         serializeJson(doc, requestBody);
 
