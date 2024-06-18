@@ -10,12 +10,12 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.post('/postData', async (req, res) => {
-    const { value } = req.body;
-    console.log('Received value:', value);
+    const { value, counter } = req.body;
+    console.log('Received value:', value, 'and counter:', counter);
 
     // Define the path and content for the JSON file
     const filePath = './data.json';
-    const content = JSON.stringify({ value }, null, 2); // Pretty print the JSON
+    const content = JSON.stringify({ value, counter }, null, 2); // Pretty print the JSON
 
     try {
         // Write the content to the JSON file
