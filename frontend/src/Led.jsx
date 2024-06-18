@@ -26,7 +26,7 @@ const Led = () => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({value: "0"})
+            body: JSON.stringify({value: "0", counter: data.counter})
         }).then(() => {
             console.log("data sent to server");
         }).catch(error => {

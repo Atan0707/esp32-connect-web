@@ -23,6 +23,8 @@
                 "C:\\Users\\Hariz\\Documents\\Arduino\\libraries\\ESP_Async_WebServer\\src",
                 "C:\\Users\\Hariz\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.0.1\\libraries\\FS\\src",
                 "C:\\Users\\Hariz\\Documents\\Arduino\\libraries\\AsyncTCP\\src",
+                "C:\\Users\\Hariz\\Documents\\Arduino\\libraries\\LiquidCrystal_I2C",
+                "C:\\Users\\Hariz\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.0.1\\libraries\\Wire\\src",
                 "c:\\users\\hariz\\appdata\\local\\arduino15\\packages\\esp32\\tools\\esp-x32\\2302\\xtensa-esp32-elf\\include\\c++\\12.2.0",
                 "c:\\users\\hariz\\appdata\\local\\arduino15\\packages\\esp32\\tools\\esp-x32\\2302\\xtensa-esp32-elf\\include\\c++\\12.2.0\\xtensa-esp32-elf",
                 "c:\\users\\hariz\\appdata\\local\\arduino15\\packages\\esp32\\tools\\esp-x32\\2302\\xtensa-esp32-elf\\include\\c++\\12.2.0\\backward",
