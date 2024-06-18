@@ -128,7 +128,6 @@ void loop()
         {
             Serial.print("GET request failed with status code ");
             Serial.println(httpCodeGet);
-            lcd.print("GET request failed");
         }
 
         httpGet.end();
